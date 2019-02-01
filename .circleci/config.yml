@@ -6,22 +6,17 @@ jobs: # a collection of steps
 
     docker: # run the steps with Docker
       - image: circleci/openjdk:8-jdk-browsers # ...with this image as the primary container; this is where all `steps` will run
-          environment:
-            MYSQL_HOST: 127.0.0.1
-            MYSQL_DB: archivesearch
-            MYSQL_USER: root
-            MYSQL_ALLOW_EMPTY_PASSWORD: true
-            MYSQL_PASSWORD:
+
       - image: circleci/mysql:latest
     
     steps: # a collection of executable commands
 
       - checkout # check out source code to working directory
       
-      - run:
-          name: database_setup
-          command: |
-            sudo apt-get install mysql-client
+      #- run:
+          #name: database_setup
+          #command: |
+             #sudo apt-get install mysql-client
             
       - restore_cache: # restore the saved cache after the first run or if `pom.xml` has changed
           # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
